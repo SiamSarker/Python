@@ -1,9 +1,6 @@
 # inheritance
 
 class User():
-    def __init__(self, email):
-        self.email = email
-
     def sign_in(self):
         print('logged in')
     def attack(self):
@@ -11,7 +8,6 @@ class User():
 
 class Wizerd(User):
     def __init__(self, name, power):
-        super().__init__(self)
         self.name = name
         self.power = power
 
@@ -20,18 +16,34 @@ class Wizerd(User):
 
 class Archer(User):
     def __init__(self, name, num_arrows):
-        super().__init__(self)
         self.name = name
         self.num_arrows = num_arrows
+
+    def check_arrows(self):
+        print(f'{self.num_arrows} remaining')
 
     def attack(self):
         print(f'Attacking with arrows {self.num_arrows}')
 
+    def run(self):
+        print('ran really fast')
 
-wizerd1 = Wizerd('Siam', 50)
-archer1 = Archer('Robin', 100)
+class HybridBorg(Wizerd, Archer):
+    def __init__(self, name, power, arrows):
+        Archer.__init__(self, name, arrows)
+        Wizerd.__init__(self, name, power)
 
-print(dir(wizerd1))
+
+hb1 = HybridBorg('Borgie', 50, 100)
+
+print(hb1.check_arrows())
+print(hb1.attack())
+
+
+# wizerd1 = Wizerd('Siam', 50)
+# archer1 = Archer('Robin', 100)
+#
+# print(dir(wizerd1))
 
 # wizerd1.attack()
 # archer1.attack()
