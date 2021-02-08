@@ -4,6 +4,8 @@ while True:
     try:
         age = int(input('what is you age? '))
         10/age
+        if age < 10:
+            raise Exception('cut it out')
     except ValueError:
         print('Please enter a number')
     except ZeroDivisionError:
