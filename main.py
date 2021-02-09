@@ -1,2 +1,2 @@
 print('Hi')
-print('repl.it only work on main.py in home directory')
+print('repl.it only work on test.py in home directory')
