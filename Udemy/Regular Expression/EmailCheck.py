@@ -15,9 +15,6 @@ print(a.start())
 print(a.end())
 print(a.group())
 
-
-
-
 b = pattern.findall(string)
 
 print(b)
