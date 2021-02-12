@@ -9,9 +9,14 @@ class TestMain(unittest.TestCase):
         self.assertEqual(result, 15)
 
     def test_do_stuff2(self):
-        test_param = 10
+        test_param = 'rrtgb'
         result = main.do_stuff(test_param)
-        self.assertEqual(result, ValueError)
+        self.assertIsInstance(result, ValueError)
+
+    def test_do_stuff3(self):
+        test_param = None
+        result = main.do_stuff(test_param)
+        self.assertEqual(result, 'Please enter number')
 
 
 
