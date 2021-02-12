@@ -19,5 +19,5 @@ class TestMain(unittest.TestCase):
         self.assertEqual(result, 'Please enter number')
 
 
-
-unittest.main()
+if __name__ == '__main__':
+    unittest.main()
