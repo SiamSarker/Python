@@ -1,4 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
 
-res = requests('https://news.ycombinator.com/news')
+res = requests.get('https://news.ycombinator.com/news')
+print(res.text)
