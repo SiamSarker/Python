@@ -23,3 +23,10 @@ for d in data:
     else:
         Test_set.append(d)
 
+# k - Hyperparameter turing
+K = 5
+
+for V in Val_set:
+    for T in Train_set:
+
+
