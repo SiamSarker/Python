@@ -49,8 +49,11 @@ for V in Val_set:
     # print("")
     near = []
     K = 5
+    print(distances)
     for i in range(K):
         near.append(distances[i][0])
+
+    print(near)
 
     counts = {}
     for i in range(len(near)):
@@ -59,6 +62,14 @@ for V in Val_set:
             counts[IClass] = counts[IClass] + 1
         else:
             counts[IClass] = 1
+
+    print(near)
+    print("")
+    # counts.sort(key=lambda elem: elem[1], reverse= True)  #sort
+    print(near)
+
+    print("")
+    print("")
 
 
 
