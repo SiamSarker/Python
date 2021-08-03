@@ -13,7 +13,6 @@ Val_set = []
 Test_set = []
 random.shuffle(data)
 
-type(data)
 
 for d in data:
     r = random.uniform(0, 1)
@@ -34,29 +33,35 @@ def euclideanDistance(val1, val2, length):
 
 
 right = 0
+accuracy = 0
+K = 3
 
 for V in Val_set:
-    distances = []
+    L = []
     for T in Train_set:
         dist = euclideanDistance(V, T, 3)    # suppose to be N-1
-        distances.append((T, dist))
+        L.append((T, dist))
     # for i in range(5):
     #     print(distances[i])
     # print("")
 
-    distances.sort(key=lambda elem: elem[1])
+    L.sort(key=lambda elem: elem[1])
 
     # for i in range(5):
     #     print(distances[i])
     # print("")
     # print("")
+    # print("L  suppose to be huge")
     near = []
-    K = 9
-    print(distances)
-    for i in range(K):
-        near.append(distances[i][0])
 
-    print(near)
+    # print(L)
+    for i in range(K):
+        near.append(L[i][0])
+
+    # print("3 near list")
+    # print(near)
+    # print(len(near))
+    # print("end")
 
     counts = {}
     for i in range(len(near)):
@@ -66,39 +71,34 @@ for V in Val_set:
         else:
             counts[IClass] = 1
 
-    print(counts)
+    # print(counts)
     sorted_d = sorted(counts.items(), key=operator.itemgetter(1), reverse=True)
-    print(sorted_d)
-    print(sorted_d[0][0])
+    # print(sorted_d)
+    # print(sorted_d[0][0])
 
     nearestClass = sorted_d[0][0]
 
     if V[-1] == nearestClass:
         right = right + 1
-    print(V[-1])
-    print("Is it right?")
-    print(right)
+    # print(V[-1])
+    # print("Is it right?")
+    # print(right)
+    #
+    #
+    #
+    #
+    # print(V)
+    #
+    #
+    #
+    # print("")
+    # print("")
 
-
-
-
-    print(V)
-
-
-
-    print("")
-    print("")
-
+print("K is "+str(K))
+print("Length of Validaty Set: "+str(len(Val_set)))
+print("Right : "+str(right))
 accuracy = (right/float(len(Val_set))) * 100
-print(str(accuracy) +"%")
-
-
-
-
-
-
-
-
+print("Accuracy : "+str(accuracy) +"%")
 
 
 
