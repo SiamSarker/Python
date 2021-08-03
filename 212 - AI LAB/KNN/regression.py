@@ -4,6 +4,8 @@ import operator
 import numpy as np
 
 data_path = "/Users/siamsarker/Google Drive/Python/212 - AI LAB/KNN/Dataset/diabetes.csv"
+
+print("Hello World")
 my_data = np.genfromtxt(data_path, delimiter=',')
 
 data = my_data.tolist()
@@ -12,6 +14,7 @@ Train_set = []
 Val_set = []
 Test_set = []
 random.shuffle(data)
+
 
 for d in data:
     r = random.uniform(0, 1)
@@ -32,7 +35,7 @@ def euclideanDistance(val1, val2, length):
     return math.sqrt(dista)
 
 
-accuracy = 0
+Mean_Squared_Error = 0
 K = 3
 error = 0
 
@@ -83,7 +86,10 @@ for V in Val_set:
 
     # nearestClass = sorted_d[0][0]
 
-    error = error + math.sqrt(V[-1] - avg)
+
+    error = error + math.sqrt(abs(V[-1] - avg))
+
+
 
     # if V[-1] == nearestClass:
     #     right = right + 1
@@ -103,5 +109,5 @@ for V in Val_set:
 
 print("K is " + str(K))
 print("Length of Validaty Set: " + str(len(Val_set)))
-accuracy = (error / float(len(Val_set))) * 100
-print("Accuracy : " + str(accuracy) + "%")
+Mean_Squared_Error = error / float(len(Val_set))
+print("Mean_Squared_Error : " + str(Mean_Squared_Error))
