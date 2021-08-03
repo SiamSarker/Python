@@ -1,10 +1,9 @@
 import random
 import math
 import operator
-
 import numpy as np
 
-data_path = "/Users/siamsarker/Google Drive/Python/212 - AI LAB/KNN/Dataset/iris.csv"
+data_path = "/Users/siamsarker/Google Drive/Python/212 - AI LAB/KNN/Dataset/diabetes.csv"
 my_data = np.genfromtxt(data_path, delimiter=',')
 
 data = my_data.tolist()
@@ -27,20 +26,20 @@ for d in data:
 # k - Hyperparameter turing
 
 def euclideanDistance(val1, val2, length):
-    dist = 0
-    for i in range(length):
-        dist = dist + pow((val1[i] - val2[i]), 2)
-    return math.sqrt(dist)
+    dista = 0
+    for j in range(length):
+        dista = dista + pow((val1[j] - val2[j]), 2)
+    return math.sqrt(dista)
 
 
-right = 0
 accuracy = 0
 K = 3
+error = 0
 
 for V in Val_set:
     L = []
     for T in Train_set:
-        dist = euclideanDistance(V, T, 3)  # suppose to be N-1
+        dist = euclideanDistance(V, T, 10)  # suppose to be N-1
         L.append((T, dist))
     # for i in range(5):
     #     print(distances[i])
@@ -64,23 +63,30 @@ for V in Val_set:
     # print(len(near))
     # print("end")
 
-    counts = {}
+    # counts = {}
+    # for i in range(len(near)):
+    #     IClass = near[i][-1]
+    #     if IClass in counts:
+    #         counts[IClass] = counts[IClass] + 1
+    #     else:
+    #         counts[IClass] = 1
+
+    total = 0
     for i in range(len(near)):
-        IClass = near[i][-1]
-        if IClass in counts:
-            counts[IClass] = counts[IClass] + 1
-        else:
-            counts[IClass] = 1
+        total = total + near[i][-1]
+    avg = total / len(near)
 
     # print(counts)
-    sorted_d = sorted(counts.items(), key=operator.itemgetter(1), reverse=True)
+    # sorted_d = sorted(counts.items(), key=operator.itemgetter(1), reverse=True)
     # print(sorted_d)
     # print(sorted_d[0][0])
 
-    nearestClass = sorted_d[0][0]
+    # nearestClass = sorted_d[0][0]
 
-    if V[-1] == nearestClass:
-        right = right + 1
+    error = error + math.sqrt(V[-1] - avg)
+
+    # if V[-1] == nearestClass:
+    #     right = right + 1
     # print(V[-1])
     # print("Is it right?")
     # print(right)
@@ -97,6 +103,5 @@ for V in Val_set:
 
 print("K is " + str(K))
 print("Length of Validaty Set: " + str(len(Val_set)))
-print("Right : " + str(right))
-accuracy = (right / float(len(Val_set))) * 100
+accuracy = (error / float(len(Val_set))) * 100
 print("Accuracy : " + str(accuracy) + "%")
