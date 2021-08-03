@@ -1,5 +1,6 @@
 import random
 import math
+import operator
 import numpy as np
 
 data_path = "/Users/siamsarker/Google Drive/Python/212 - AI LAB/KNN/Dataset/iris.csv"
@@ -24,13 +25,15 @@ for d in data:
         Test_set.append(d)
 
 # k - Hyperparameter turing
-K = 5
 
 def euclideanDistance(val1, val2, length):
     dist = 0
     for i in range(length):
         dist = dist + pow((val1[i] - val2[i]), 2)
     return math.sqrt(dist)
+
+
+right = 0
 
 for V in Val_set:
     distances = []
@@ -48,7 +51,7 @@ for V in Val_set:
     # print("")
     # print("")
     near = []
-    K = 5
+    K = 9
     print(distances)
     for i in range(K):
         near.append(distances[i][0])
@@ -63,13 +66,31 @@ for V in Val_set:
         else:
             counts[IClass] = 1
 
-    print(near)
-    print("")
-    # counts.sort(key=lambda elem: elem[1], reverse= True)  #sort
-    print(near)
+    print(counts)
+    sorted_d = sorted(counts.items(), key=operator.itemgetter(1), reverse=True)
+    print(sorted_d)
+    print(sorted_d[0][0])
+
+    nearestClass = sorted_d[0][0]
+
+    if V[-1] == nearestClass:
+        right = right + 1
+    print(V[-1])
+    print("Is it right?")
+    print(right)
+
+
+
+
+    print(V)
+
+
 
     print("")
     print("")
+
+accuracy = (right/float(len(Val_set))) * 100
+print(str(accuracy) +"%")
 
 
 
