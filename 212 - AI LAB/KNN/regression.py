@@ -51,6 +51,7 @@ for testSet in Test_set:
     for i in range(len(near)):
         total = total + near[i][-1]
     avg = total / len(near)
+    print(avg)
 
     error = error + math.sqrt(pow((testSet[-1] - avg), 2))
 
