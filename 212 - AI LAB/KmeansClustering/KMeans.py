@@ -13,10 +13,10 @@ iteration = 0
 
 while True:
     for S in Data:
-        subtract = Centers - S
-        squared_arr = subtract ** 2
-        summed_arr = squared_arr.sum(axis=1)
-        i = summed_arr.argmin()
+        dist = []
+        for C in Centers:
+            dist.append((S[0]-C[0]) ** 2 + (S[1]-C[1]) ** 2)
+        i = np.argmin(dist)
         Temp_Clusters[i].append(S.tolist())
 
     for i in range(len(Temp_Clusters)):
