@@ -42,7 +42,7 @@ print ('Message sent successfully')
 #==========New Code================================ 
 
 #Now receive data
-reply = s.recv(200)
+reply = s.recv(4096)
  
 print (reply)
 
