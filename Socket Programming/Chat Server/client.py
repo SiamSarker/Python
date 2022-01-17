@@ -1,7 +1,7 @@
 import socket
  
 host = '127.0.0.1'
-port = 5000
+port = 8444
          
 mySocket = socket.socket()
 mySocket.connect((host,port))
